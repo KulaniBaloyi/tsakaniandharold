@@ -40,9 +40,7 @@ const Landing = () => {
             <h1 className='text-5xl sm:text-6xl md:text-7xl font-serif leading-tight'>
               {coupleName}
             </h1>
-            <p className='text-4xl sm:text-5xl font-serif mt-2 text-gray-200'>
-              & Harold
-            </p>
+           
         </div>
       </div>
 
