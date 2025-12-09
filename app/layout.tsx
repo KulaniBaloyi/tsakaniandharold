@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Header from "./components/Header";
 
 export const metadata: Metadata = {
   title: "Tsakani and Harold",
@@ -16,6 +17,7 @@ export default function RootLayout({
     <html lang="en">
       <body
       >
+    <Header/>
         {children}
       </body>
     </html>
