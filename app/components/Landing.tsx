@@ -1,5 +1,8 @@
 import React from 'react';
 
+// NOTE: Assumes you have configured the 'font-display' (for Serif names) 
+// and 'font-sans' (for general text) in your tailwind.config.js.
+
 const Landing = () => {
   // --- Engagement Details (Hardcoded) ---
   const coupleName = "Tsakani & Harold";
@@ -8,76 +11,90 @@ const Landing = () => {
   const tagline = "Our Journey Begins.";
 
   return (
-    // Outer Container: The main wrapper for all elements
-    <section className='h-screen w-full flex flex-col md:flex-row font-sans relative'>
-      {/* The 'relative' class here is crucial! It establishes the positioning 
-        context for the absolute-positioned RSVP button.
-      */}
+    // Outer Container: Min height, uses smaller padding on mobile (p-4)
+    <section className='min-h-screen w-full bg-white font-sans text-gray-800 p-4 md:p-12'>
+      
+      {/* Navigation (Top Center) */}
+      <header className='w-full flex justify-center mt-4 mb-10 md:mt-0 md:mb-24'>
+          <nav className='flex space-x-4 sm:space-x-8 text-xs sm:text-sm uppercase tracking-widest font-medium'>
+              <a href="#" className='hover:text-gray-500 transition duration-150'>Home</a>
+              <a href="#" className='hover:text-gray-500 transition duration-150'>Gallery</a>
+              <a href="#" className='hover:text-gray-500 transition duration-150'>Registry</a>
+              <a href="#" className='hover:text-gray-500 transition duration-150'>RSVP</a>
+          </nav>
+      </header>
 
-      {/* ---------------------------------------------------- */}
-      {/* LEFT HALF (Design Block) - z-10 added to ensure it's below the button's z-50 */}
-      {/* ---------------------------------------------------- */}
-      <div 
-        className='
-          w-full md:w-1/2 h-3/5 md:h-full 
-          bg-[#707567] relative z-10
-          p-6 sm:p-10 flex flex-col justify-end text-white
-        '
-      >
+      {/* Main Content Area (Centered) */}
+      <div className='max-w-xl mx-auto text-center relative'> {/* max-w-xl limits max size, scales down naturally */}
         
-        {/* Navigation Header (Top Left) - Remains z-10 but is positioned relative to this block */}
-        <div className='absolute top-6 left-6 sm:top-10 sm:left-10 flex space-x-4 sm:space-x-8 text-xs uppercase tracking-widest font-light'>
-            <a href="#" className='hover:text-gray-300'>Home</a>
-            <a href="#" className='hover:text-gray-300'>Gallery</a>
-            <a href="#" className='hover:text-gray-300'>Registry</a>
+        {/* Decorative Floral Accents Placeholder */}
+        {/* These elements are hidden on small screens for better performance and reduced clutter */}
+        <div className='absolute inset-0 pointer-events-none hidden md:block'>
+            {/* Top Left Accent */}
+            <div className='absolute top-[-50px] left-[-50px] text-gray-300 text-6xl opacity-50'>🌿</div>
+            {/* Bottom Right Accent */}
+            <div className='absolute bottom-[-100px] right-[-100px] text-gray-300 text-6xl opacity-50'>🌸</div>
         </div>
-        
-        {/* Content */}
-        <div className="mb-4">
-            <p className='text-sm uppercase tracking-wider mb-2 font-light opacity-80'>
-              05.15.20
-            </p>
-            <h1 className='text-5xl sm:text-6xl md:text-7xl font-serif leading-tight'>
-              {coupleName}
-            </h1>
-           
-        </div>
-      </div>
 
-      {/* ---------------------------------------------------- */}
-      {/* RIGHT HALF (Image Placeholder) - z-0 or z-10 */}
-      {/* ---------------------------------------------------- */}
-      <div 
-        className='
-          w-full md:w-1/2 h-2/5 md:h-full 
-          bg-gray-400 relative z-0 flex items-center justify-center 
-          overflow-hidden
-        '
-      >
-        <span className='text-gray-700 text-lg'>[Image Placeholder]</span>
+        {/* --- Central Text Block --- */}
+        
+        {/* Announcement Date */}
+        <p className='text-xs uppercase tracking-[0.3em] text-gray-500 mb-4 md:mb-6'>
+          {announcementDate}
+        </p>
+
+        {/* Main Names/Heading */}
+        <h1 className='
+            // Font size scales down significantly on mobile
+            text-5xl sm:text-7xl md:text-8xl lg:text-9xl 
+            font-display font-light leading-snug // Changed to leading-snug for better mobile stacking
+            text-[#B05E5E] 
+            relative z-10
+          '
+        >
+          {coupleName}
+        </h1>
+        
+        {/* Tagline / Sub-Heading */}
+        <h2 className='mt-4 text-lg sm:text-xl font-light italic text-gray-600'>
+          {tagline}
+        </h2>
+        
+        {/* Countdown / Detail */}
+        <div className='mt-8 mb-10 text-xs uppercase tracking-widest text-gray-500'>
+            <span className='font-bold text-base text-gray-800 mr-2'>{daysLeftStatic}</span> Days Until I Do
+        </div>
+
+        {/* Call to Action Button (RSVP/Reservation Style) */}
+        <button 
+            className='
+                px-8 py-3 
+                border border-gray-400 text-gray-800 
+                rounded-full 
+                uppercase tracking-wider font-medium text-sm
+                hover:bg-gray-50 transition duration-300
+            '
+        >
+            Make Reservation
+        </button>
+
       </div>
       
       {/* ---------------------------------------------------- */}
-      {/* THE ROTATED RSVP BUTTON (Moved to the main section) */}
+      {/* Footer Image Gallery Placeholder */}
       {/* ---------------------------------------------------- */}
-      <div 
-        className='
-          absolute z-50 // <-- CRUCIAL: High Z-index
-          
-          // Mobile Position: Center of the dividing line between the two blocks
-          top-[60%] left-1/2 transform -translate-x-1/2 -translate-y-1/2
-
-          // Desktop Position: Center of the screen dividing line
-          md:top-1/2 md:left-1/2 md:transform md:-translate-x-1/2 md:-translate-y-1/2
-          
-          // Styling
-          w-24 h-24 rounded-full border border-gray-900 flex items-center justify-center 
-          cursor-pointer bg-white shadow-lg bg-opacity-90 hover:bg-opacity-100 transition duration-300
-        '
-      >
-        <span className='text-gray-900 text-sm font-semibold uppercase tracking-widest -rotate-45'>
-          RSVP
-        </span>
+      <div className='mt-16 md:mt-32 max-w-6xl mx-auto'>
+        <div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
+            {/* Example Image Placeholder 1 */}
+            <div className='bg-gray-200 h-48 md:h-64 flex items-center justify-center'>
+                <p className='text-gray-500 text-sm'>Photo 1</p>
+            </div>
+            {/* Example Image Placeholder 2 */}
+            {/* On mobile (default), this takes 1 column. On md screens, it spans 2 columns. */}
+            <div className='bg-gray-200 h-48 md:h-64 flex items-center justify-center md:col-span-2'>
+                 <p className='text-gray-500 text-sm'>Photo 2 (Wide)</p>
+            </div>
+        </div>
       </div>
 
     </section>
